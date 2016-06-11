@@ -16,6 +16,9 @@ import android.view.View;
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    int position;
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,9 @@ public class BaseActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        findViewById(R.id.fab).setVisibility(View.GONE);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -70,15 +75,22 @@ public class BaseActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        int selectedPosition;
         Intent navigationIntent;
 
-        if (id == R.id.task_feed) {
-            navigationIntent = new Intent(this, TaskFeedActivity.class);
-        } else {
-            navigationIntent = new Intent(this, MyTasksActivity.class);
+        switch (id) {
+            case R.id.task_feed:
+                navigationIntent = new Intent(this, TaskFeedActivity.class);
+                selectedPosition = 0;
+            default:
+                navigationIntent = new Intent(this, MyTasksActivity.class);
+                selectedPosition = 1;
         }
 
-        startActivity(navigationIntent);
+        if(selectedPosition != position) {
+            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(navigationIntent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
