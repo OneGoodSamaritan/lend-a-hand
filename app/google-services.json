@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1071874053510",
+    "firebase_url": "https://project-8227789179492924761.firebaseio.com",
+    "project_id": "project-8227789179492924761",
+    "storage_bucket": "project-8227789179492924761.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071874053510:android:a0ab63f5b48ba652",
+        "android_client_info": {
+          "package_name": "onegoodsamaritan.lendahand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071874053510-urh5655hfdmdv7ja40c1r26s6q3lm39r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr9Jy__jyQkmNgGq2DirMRmoHNhziSOWs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
