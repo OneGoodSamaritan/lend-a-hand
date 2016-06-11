@@ -21,8 +21,8 @@ public class TaskFeedActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.task_feed_activity, null, false);
-        mDrawer.addView(contentView, 0);
+        View contentView = inflater.inflate(R.layout.task_feed_activity, null);
+//        mDrawer.addView(contentView, 0);
         getSupportActionBar().setTitle("Task Feed");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.VISIBLE);
@@ -38,8 +38,17 @@ public class TaskFeedActivity extends BaseActivity {
         Task a = new Task("Fix my bike", "It needs fixing yo!", "The 6", 2);
         Task b = new Task("Water my rose ;)", "Plz", "Jane and Finch", 10);
         Task c = new Task("Do my 155 homework", "Paul Ward is balls.", "The Bomber", 23);
+        Task e = new Task("Fix my bike", "It needs fixing yo!", "The 6", 2);
+        Task f = new Task("Water my rose ;)", "Plz", "Jane and Finch", 10);
+        Task g = new Task("Do my 155 homework", "Paul Ward is balls.", "The Bomber", 23);
+        Task h = new Task("Fix my bike", "It needs fixing yo!", "The 6", 2);
+        Task i = new Task("Water my rose ;)", "Plz", "Jane and Finch", 10);
+        Task j = new Task("Do my 155 homework", "Paul Ward is balls.", "The Bomber", 23);
+        Task k = new Task("Fix my bike", "It needs fixing yo!", "The 6", 2);
+        Task m = new Task("Water my rose ;)", "Plz", "Jane and Finch", 10);
+        Task l = new Task("Do my 155 homework", "Paul Ward is balls.", "The Bomber", 23);
 
-        Task[] tasks = new Task[] {a,b,c};
+        Task[] tasks = new Task[] {a,b,c,e,f,g,h,i,j,k,l,m};
 
         mFeedRecyclerView = (RecyclerView) findViewById(R.id.task_feed);
         mFeedRecyclerView.setHasFixedSize(true);
@@ -47,6 +56,12 @@ public class TaskFeedActivity extends BaseActivity {
         mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
         mFeedAdapter = new TaskAdapter(tasks);
         mFeedRecyclerView.setAdapter(mFeedAdapter);
+        mFeedRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

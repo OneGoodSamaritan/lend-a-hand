@@ -1,5 +1,6 @@
 package onegoodsamaritan.lendahand;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,32 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+    public static class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView title;
         public TextView description;
         public TextView location;
         public TextView karma;
+        private String requestor;
+        private String date;
+
         public TaskViewHolder(View card) {
             super(card);
             title = (TextView) card.findViewById(R.id.title);
-            description = (TextView) card.findViewById(R.id.title);
-            location = (TextView) card.findViewById(R.id.title);
-            karma = (TextView) card.findViewById(R.id.title);
+            description = (TextView) card.findViewById(R.id.description);
+            location = (TextView) card.findViewById(R.id.location);
+            karma = (TextView) card.findViewById(R.id.karma);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent detailsIntent = new Intent(v.getContext(), TaskDetailActivity.class);
+            detailsIntent.putExtra("title", title.getText());
+            detailsIntent.putExtra("description", description.getText());
+            detailsIntent.putExtra("location", location.getText());
+            detailsIntent.putExtra("karma", karma.getText());
+            detailsIntent.putExtra("requestor", requestor);
+            detailsIntent.putExtra("date", date);
         }
     }
 
@@ -55,7 +70,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.title.setText(mTasks[position].getTitle());
         holder.description.setText(mTasks[position].getDescription());
         holder.location.setText(mTasks[position].getLocation());
-        holder.karma.setText(mTasks[position].getKarma());
+        holder.karma.setText(Integer.toString(mTasks[position].getKarma()));
+        holder.requestor = "R";
+        holder.date = "D";
     }
 
     // Return the size of your dataset (invoked by the layout manager)
