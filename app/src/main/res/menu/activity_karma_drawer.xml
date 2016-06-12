@@ -10,6 +10,11 @@
             android:id="@+id/my_tasks"
             android:icon="@drawable/ic_menu_gallery"
             android:title="My Tasks" />
+        <item
+            android:id="@+id/profileBtn"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Profile"
+        />
     </group>
 
     <!--<item android:title="Communicate">-->
