@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,6 +57,10 @@ public class TaskDetailActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         setContentView(R.layout.task_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Task Details");
     }
 
     @Override
@@ -63,7 +68,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onResume();
 
         ((TextView) findViewById(R.id.title_details)).setText(title);
-        ((TextView) findViewById(R.id.karma_details)).setText(karma);
+        ((TextView) findViewById(R.id.karma_details)).setText(karma + "K");
         ((TextView) findViewById(R.id.location_details)).setText(location);
         ((TextView) findViewById(R.id.description_details)).setText(description);
         ((TextView) findViewById(R.id.requestor_details)).setText(requestor);
