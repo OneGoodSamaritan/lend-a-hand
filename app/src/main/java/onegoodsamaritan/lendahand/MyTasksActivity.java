@@ -25,9 +25,10 @@ import java.util.List;
 
 import onegoodsamaritan.lendahand.models.Task;
 
-public class MyTasksActivity extends BaseActivity{
+public class MyTasksActivity extends BaseActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class MyTasksActivity extends BaseActivity{
         mDrawer.addView(contentView, 0);
 
         getSupportActionBar().setTitle("My Activity");
-        mSectionsPagerAdapter= new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -54,23 +55,12 @@ public class MyTasksActivity extends BaseActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -102,7 +92,7 @@ public class MyTasksActivity extends BaseActivity{
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
+            if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 RecyclerView mFeedRecyclerView;
                 RecyclerView.Adapter mFeedAdapter;
                 RecyclerView.LayoutManager mFeedLayoutManager;
@@ -117,8 +107,7 @@ public class MyTasksActivity extends BaseActivity{
                 mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar, 0);
                 mFeedRecyclerView.setAdapter(mFeedAdapter);
                 return rootView;
-            }
-            else{
+            } else {
                 RecyclerView mFeedRecyclerView;
                 RecyclerView.Adapter mFeedAdapter;
                 RecyclerView.LayoutManager mFeedLayoutManager;
@@ -137,6 +126,7 @@ public class MyTasksActivity extends BaseActivity{
             }
         }
     }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {

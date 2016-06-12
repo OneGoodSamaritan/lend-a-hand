@@ -30,7 +30,7 @@ public class TaskFeedActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.task_feed_activity, null);
         mDrawer.addView(contentView, 0);
-        getSupportActionBar().setTitle("Task Feed");
+        getSupportActionBar().setTitle("Lend a Hand");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
