@@ -45,7 +45,12 @@ public class AddTaskDialog extends DialogFragment {
                         String title = dialogTitleEditText.getText().toString();
                         String description = dialogDescriptionEditText.getText().toString();
                         String location = dialogLocationEditText.getText().toString();
-                        int karma = Integer.valueOf(dialogKarmaEditText.getText().toString());
+
+                        int karma = 0;
+                        if (!dialogKarmaEditText.getText().toString().isEmpty()) {
+                            karma = Integer.valueOf(dialogKarmaEditText.getText().toString());
+                        }
+
                         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
                         Task task = new Task(title, description, location, karma, getName(), date, Constants.OPEN, "");

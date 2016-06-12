@@ -4,15 +4,35 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#E91E63"
+        android:layout_height="75dp"
+        android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="Create Task"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Request a Hand"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/karma_coin"
+            android:gravity="center"
+            android:text="56K"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/dialog_title"
@@ -32,7 +52,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="4dp"
-        android:hint="Description" />
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:minLines="3" />
 
     <EditText
         android:id="@+id/dialog_location"
