@@ -20,6 +20,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
+                android:id="@+id/karma_textview"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right"

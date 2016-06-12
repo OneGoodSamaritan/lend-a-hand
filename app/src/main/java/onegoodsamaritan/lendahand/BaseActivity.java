@@ -15,12 +15,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView;
     DrawerLayout mDrawer;
+    private long mCurrentKarma;
+    private DatabaseReference mDatabase;
+    private TextView mTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +39,22 @@ public class BaseActivity extends AppCompatActivity
         setContentView(R.layout.activity_karma);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mTextView = ((TextView)toolbar.findViewById(R.id.karma_textview));
+
+        mDatabase.child("users").child(Constants.USER).child("karma").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        mCurrentKarma = (long)dataSnapshot.getValue();
+                        mTextView.setText(Long.toString(mCurrentKarma) + "K");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        mCurrentKarma = 0;
+                    }
+                });
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 

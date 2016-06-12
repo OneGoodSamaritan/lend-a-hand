@@ -43,7 +43,7 @@ public class addGraphDialog extends DialogFragment {
             String heartRate=datas.get(i);
             entries.add(new Entry(Integer.parseInt(heartRate), i));
         }
-        LineDataSet dataset = new LineDataSet(entries, "Karma");
+        LineDataSet dataset = new LineDataSet(entries, "karma");
         ArrayList<String> timeID = new ArrayList<String>();
         for (int i =1; i < 30; i++) {
             timeID.add(Integer.toString(i));
