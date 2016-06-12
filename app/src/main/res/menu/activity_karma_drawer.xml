@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/task_feed"
+            android:id="@+id/task_feedBtn"
             android:icon="@drawable/ic_menu_camera"
             android:title="Task Feed" />
         <item

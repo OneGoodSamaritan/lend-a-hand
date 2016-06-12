@@ -1,5 +1,6 @@
 package onegoodsamaritan.lendahand;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
@@ -16,16 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by Bane on 2016-06-11.
- */
 public class MyTasksActivity extends BaseActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mytasks);
+        LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.mytasks, null, false);
+        mDrawer.addView(contentView, 0);
+
         getSupportActionBar().setTitle("My Activity");
         mSectionsPagerAdapter= new SectionsPagerAdapter(getSupportFragmentManager());
 
