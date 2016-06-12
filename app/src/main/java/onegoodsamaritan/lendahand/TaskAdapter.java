@@ -19,13 +19,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TextView karma;
         private String requestor;
         private String date;
+        private View root;
 
         public TaskViewHolder(View card) {
             super(card);
+            root = card;
             title = (TextView) card.findViewById(R.id.title);
             description = (TextView) card.findViewById(R.id.description);
             location = (TextView) card.findViewById(R.id.location);
             karma = (TextView) card.findViewById(R.id.karma);
+            root.setOnClickListener(this);
         }
 
         @Override
@@ -37,6 +40,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             detailsIntent.putExtra("karma", karma.getText());
             detailsIntent.putExtra("requestor", requestor);
             detailsIntent.putExtra("date", date);
+            v.getContext().startActivity(detailsIntent);
         }
     }
 
