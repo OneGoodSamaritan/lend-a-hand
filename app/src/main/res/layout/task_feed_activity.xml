@@ -9,11 +9,19 @@
     tools:context="onegoodsamaritan.lendahand.TaskFeedActivity"
     tools:showIn="@layout/app_bar_karma">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/task_feed_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:clickable="true"
+        android:visibility="invisible"
         android:scrollbars="vertical" />
+
 </RelativeLayout>
