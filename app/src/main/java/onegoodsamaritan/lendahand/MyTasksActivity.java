@@ -10,12 +10,20 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import onegoodsamaritan.lendahand.models.Task;
 
 public class MyTasksActivity extends BaseActivity{
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -94,10 +102,39 @@ public class MyTasksActivity extends BaseActivity{
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
+                RecyclerView mFeedRecyclerView;
+                RecyclerView.Adapter mFeedAdapter;
+                RecyclerView.LayoutManager mFeedLayoutManager;
+                ProgressBar progressBar;
+                List<Task> mInitialTaskList = new ArrayList<>();
+                View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+                mFeedRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycle);
+                progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                mFeedLayoutManager = new LinearLayoutManager(getActivity());
+                mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
+                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar);
+                mFeedRecyclerView.setAdapter(mFeedAdapter);
+                return rootView;
+            }
+            else{
+                RecyclerView mFeedRecyclerView;
+                RecyclerView.Adapter mFeedAdapter;
+                RecyclerView.LayoutManager mFeedLayoutManager;
+                ProgressBar progressBar;
+                List<Task> mInitialTaskList = new ArrayList<>();
+
+                View rootView = inflater.inflate(R.layout.fragment_main2, container, false);
+
+                progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                mFeedRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycle2);
+                mFeedLayoutManager = new LinearLayoutManager(getActivity());
+                mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
+                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar);
+                mFeedRecyclerView.setAdapter(mFeedAdapter);
+                return rootView;
+            }
         }
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -115,7 +152,6 @@ public class MyTasksActivity extends BaseActivity{
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 2;
         }
 
@@ -123,9 +159,9 @@ public class MyTasksActivity extends BaseActivity{
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Issued";
                 case 1:
-                    return "SECTION 2";
+                    return "Completed";
             }
             return null;
         }
