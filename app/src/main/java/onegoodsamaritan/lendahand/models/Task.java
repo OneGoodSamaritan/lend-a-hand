@@ -1,12 +1,17 @@
 package onegoodsamaritan.lendahand.models;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Task {
-    private String title;
-    private String description;
-    private String location;
-    private int karma;
-    private String requestor;
-    private String date;
+    public String title;
+    public String description;
+    public String location;
+    public int karma;
+    public String requestor;
+    public String date;
 
     // 0 : open, 1 : accepted, 2 : completed
     private int status;
@@ -14,42 +19,26 @@ public class Task {
     public Task() {
     }
 
-    public Task(String title, String description, String location, int karma) {
+    public Task(String title, String description, String location, int karma, String requestor, String date, int status) {
         this.title = title;
         this.description = description;
         this.location = location;
         this.karma = karma;
+        this.requestor = requestor;
+        this.date = date;
+        this.status = status;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("title", title);
+        result.put("description", description);
+        result.put("location", location);
+        result.put("karma", karma);
+        result.put("requestor", requestor);
+        result.put("date", date);
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getKarma() {
-        return karma;
-    }
-
-    public void setKarma(int karma) {
-        this.karma = karma;
+        return result;
     }
 }

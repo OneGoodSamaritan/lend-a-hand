@@ -21,7 +21,6 @@ public class KarmaActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddTaskDialog addTaskDialog = new AddTaskDialog(getApplicationContext());
 //                addTaskDialog.show();
             }
         });
