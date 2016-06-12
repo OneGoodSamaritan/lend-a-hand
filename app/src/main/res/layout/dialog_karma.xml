@@ -23,6 +23,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/dialog_karma_textview"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"

@@ -8,9 +8,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,14 +29,31 @@ public class AddTaskDialog extends DialogFragment {
     private EditText dialogLocationEditText;
     private EditText dialogKarmaEditText;
     private DatabaseReference mDatabase;
+    private long mCurrentKarma;
+    private TextView mTextView;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_karma, null);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mTextView = ((TextView)view.findViewById(R.id.dialog_karma_textview));
+
+        mDatabase.child("users").child(Constants.USER).child("karma").addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        mCurrentKarma = (long)dataSnapshot.getValue();
+                        mTextView.setText(Long.toString(mCurrentKarma) + "K");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        mCurrentKarma = 0;
+                    }
+                });
+
 
         dialogTitleEditText = (EditText) view.findViewById(R.id.dialog_title);
         dialogDescriptionEditText = (EditText) view.findViewById(R.id.dialog_description);
