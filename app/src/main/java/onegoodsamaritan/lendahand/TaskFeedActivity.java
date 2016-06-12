@@ -22,7 +22,7 @@ public class TaskFeedActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.task_feed_activity, null);
-//        mDrawer.addView(contentView, 0);
+        mDrawer.addView(contentView, 0);
         getSupportActionBar().setTitle("Task Feed");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.VISIBLE);
@@ -33,7 +33,6 @@ public class TaskFeedActivity extends BaseActivity {
                 addTaskDialog.show();
             }
         });
-        position = 0;
 
         Task a = new Task("Fix my bike", "It needs fixing yo!", "The 6", 2);
         Task b = new Task("Water my rose ;)", "Plz", "Jane and Finch", 10);
@@ -50,23 +49,16 @@ public class TaskFeedActivity extends BaseActivity {
 
         Task[] tasks = new Task[] {a,b,c,e,f,g,h,i,j,k,l,m};
 
-        mFeedRecyclerView = (RecyclerView) findViewById(R.id.task_feed);
-        mFeedRecyclerView.setHasFixedSize(true);
+        mFeedRecyclerView = (RecyclerView) findViewById(R.id.task_feed_view);
         mFeedLayoutManager = new LinearLayoutManager(this);
         mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
         mFeedAdapter = new TaskAdapter(tasks);
         mFeedRecyclerView.setAdapter(mFeedAdapter);
-        mFeedRecyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.getMenu().getItem(position).setChecked(true);
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 }

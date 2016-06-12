@@ -39,6 +39,12 @@ public class MyTasksActivity extends BaseActivity{
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.getMenu().getItem(1).setChecked(true);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
