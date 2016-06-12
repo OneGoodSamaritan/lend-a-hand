@@ -114,7 +114,7 @@ public class MyTasksActivity extends BaseActivity{
                 progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
                 mFeedLayoutManager = new LinearLayoutManager(getActivity());
                 mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
-                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar);
+                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar, 0);
                 mFeedRecyclerView.setAdapter(mFeedAdapter);
                 return rootView;
             }
@@ -131,7 +131,7 @@ public class MyTasksActivity extends BaseActivity{
                 mFeedRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycle2);
                 mFeedLayoutManager = new LinearLayoutManager(getActivity());
                 mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
-                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar);
+                mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar, 1);
                 mFeedRecyclerView.setAdapter(mFeedAdapter);
                 return rootView;
             }
@@ -161,7 +161,7 @@ public class MyTasksActivity extends BaseActivity{
                 case 0:
                     return "Issued";
                 case 1:
-                    return "Completed";
+                    return "Acquired";
             }
             return null;
         }

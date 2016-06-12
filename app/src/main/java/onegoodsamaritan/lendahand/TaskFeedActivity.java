@@ -42,7 +42,7 @@ public class TaskFeedActivity extends BaseActivity {
         mFeedLayoutManager.setReverseLayout(true);
         mFeedLayoutManager.setStackFromEnd(true);
         mFeedRecyclerView.setLayoutManager(mFeedLayoutManager);
-        mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar);
+        mFeedAdapter = new TaskAdapter(mInitialTaskList, progressBar, true);
         mFeedRecyclerView.setAdapter(mFeedAdapter);
         mFeedRecyclerView.setVisibility(View.VISIBLE);
         if (fab != null) {

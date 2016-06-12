@@ -24,6 +24,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private List<Task> mTasks;
     private DatabaseReference mTasksDatabase;
     private ProgressBar mProgressBar;
+    private boolean mIsMainFeed = false;
+    private int mCurrentFrag = -1;
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title;
@@ -32,7 +34,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TextView karma;
         private String requestor;
         private String date;
+        private String key;
+        private int status;
         private View root;
+        private int frag;
+        private String samaritan;
 
         public TaskViewHolder(View card) {
             super(card);
@@ -53,14 +59,40 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             detailsIntent.putExtra("karma", karma.getText());
             detailsIntent.putExtra("requestor", requestor);
             detailsIntent.putExtra("date", date);
+            detailsIntent.putExtra("status", status);
+            detailsIntent.putExtra("key", key);
+            detailsIntent.putExtra("frag", frag);
+            detailsIntent.putExtra("samaritan", samaritan);
             v.getContext().startActivity(detailsIntent);
         }
     }
 
-    public TaskAdapter(List<Task> tasksList, ProgressBar progressBar) {
+    public TaskAdapter(List<Task> tasksList, ProgressBar progressBar, boolean filter) {
+        mIsMainFeed = filter;
+        init(tasksList, progressBar);
+    }
+
+    public TaskAdapter(List<Task> tasksList, ProgressBar progressBar, int frag) {
+        mCurrentFrag = frag;
+        init(tasksList, progressBar);
+    }
+
+    private void init(List<Task> tasksList, ProgressBar progressBar) {
         mTasks = tasksList;
         mProgressBar = progressBar;
-        mTasksDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-8227789179492924761.firebaseio.com/public-tasks");
+        if(mIsMainFeed) {
+            mTasksDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-8227789179492924761.firebaseio.com/public-tasks");
+        } else {
+            switch(mCurrentFrag) {
+                case 0:
+                    mTasksDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-8227789179492924761.firebaseio.com/users/" + Constants.USER + "/issuedTasks");
+                    break;
+                case 1:
+                    mTasksDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-8227789179492924761.firebaseio.com/users/" + Constants.USER + "/acquiredTasks");
+                    break;
+                default:
+            }
+        }
         mTasksDatabase.addChildEventListener(childEventListener);
     }
 
@@ -77,8 +109,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.description.setText(mTasks.get(position).description);
         holder.location.setText(mTasks.get(position).location);
         holder.karma.setText(Integer.toString(mTasks.get(position).karma));
-        holder.requestor = "R";
-        holder.date = "D";
+        holder.requestor = mTasks.get(position).requestor;
+        holder.date = mTasks.get(position).date;
+        holder.key = mTasks.get(position).key;
+        holder.status = mTasks.get(position).status;
+        holder.samaritan = mTasks.get(position).samaritan;
+        holder.frag = mCurrentFrag;
     }
 
     @Override
@@ -91,14 +127,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             Log.d("karma", "onChildAdded:" + dataSnapshot.getKey());
             Task task = dataSnapshot.getValue(Task.class);
-            mTasks.add(task);
+            task.key = (dataSnapshot.getKey());
+            if (!mIsMainFeed) {
+                mTasks.add(task);
+            } else if (task.status == 0) {
+                mTasks.add(task);
+            }
             notifyDataSetChanged();
-            mProgressBar.setVisibility(View.GONE);
+            if (mProgressBar != null) {
+                mProgressBar.setVisibility(View.GONE);
+            }
         }
 
         @Override
         public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+            Log.d("karma", "onChildChanged:" + dataSnapshot.getKey());
+            String key = dataSnapshot.getKey();
+            for (int i = 0; i < mTasks.size(); i++) {
+                if (mTasks.get(i).key.equals(key)) {
+                    mTasks.remove(i);
+                    notifyItemRemoved(i);
+                    notifyItemRangeChanged(i, mTasks.size());
+                    notifyDataSetChanged();
+                }
+            }
         }
 
         @Override
