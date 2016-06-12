@@ -20,70 +20,90 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginTop="?attr/actionBarSize">-->
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="#f5f5f5"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
-            android:gravity="center_vertical"
-            android:layout_gravity="left"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/title_details"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textSize="30sp"
+            tools:text="Some Title" />
 
-            <TextView
-                android:id="@+id/karma_details"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_marginRight="16dp"
-                android:textSize="50sp" />
-
-            <TextView
-                android:id="@+id/title_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/karma"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/location_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_toRightOf="@+id/karma" />
+        <TextView
+            android:id="@+id/requestor_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_details"
+            android:gravity="center"
+            android:textSize="21sp"
+            tools:text="Requestor" />
 
 
-            <TextView
-                android:id="@+id/description_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/location"
-                android:layout_toRightOf="@+id/karma" />
+        <TextView
+            android:id="@+id/location_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/requestor_details"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:text="Toronto, Ontario" />
 
-            <TextView
-                android:id="@+id/requestor_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/location"
-                android:layout_toRightOf="@+id/karma" />
+        <TextView
+            android:id="@+id/description_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/location_details"
+            android:layout_marginTop="23dp"
+            android:textSize="18sp"
+            tools:text="diet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, elei" />
 
-            <TextView
-                android:id="@+id/date_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/requestor_details"
-                android:layout_toRightOf="@+id/karma" />
+        <TextView
+            android:id="@+id/karma_details"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/date_details"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/karma_coin_details"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="50sp"
+            tools:text="10K" />
 
-            <Button
-                android:id="@+id/details_button"
-                android:layout_gravity="center"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/date_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/details_button"
+            android:layout_centerHorizontal="true"
+            tools:text="Date" />
+
+        <Button
+            android:id="@+id/details_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            tools:text="Accept" />
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

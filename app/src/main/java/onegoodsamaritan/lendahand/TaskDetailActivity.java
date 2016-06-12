@@ -68,7 +68,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onResume();
 
         ((TextView) findViewById(R.id.title_details)).setText(title);
-        ((TextView) findViewById(R.id.karma_details)).setText(karma);
+        ((TextView) findViewById(R.id.karma_details)).setText(karma + "K");
         ((TextView) findViewById(R.id.location_details)).setText(location);
         ((TextView) findViewById(R.id.description_details)).setText(description);
         ((TextView) findViewById(R.id.requestor_details)).setText(requestor);
