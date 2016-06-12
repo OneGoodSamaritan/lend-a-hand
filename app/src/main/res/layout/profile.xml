@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/fett"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:text="Marc Ting"
+        android:textSize="20dp"/>
+    <ImageView
+        android:id="@+id/karmaView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/karma"
+        android:layout_below="@+id/name"/>
+    <ImageView
+        android:id="@+id/karmaNumba"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/numba"
+        android:layout_toRightOf="@+id/karmaView"
+        android:layout_below="@+id/name"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/name"
+        android:text="Karma History"/>
+
+    <ImageView
+        android:id="@+id/karmaCircle"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:src="@drawable/karmacircle"
+        android:layout_below="@+id/karmaView"/>
+    <ImageView
+        android:id="@+id/numba5"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:src="@drawable/numba5"
+        android:layout_below="@+id/karmaView"
+        android:layout_toRightOf="@id/karmaCircle"/>
+    <Button
+        android:id="@+id/circleButton"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/karmaView"
+        android:text="Circles"/>
+    <Button
+        android:id="@+id/change"
+        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_below="@id/karmaCircle"
+        android:layout_centerHorizontal="true"
+        android:text="Change profile"/>
+
+</RelativeLayout>
