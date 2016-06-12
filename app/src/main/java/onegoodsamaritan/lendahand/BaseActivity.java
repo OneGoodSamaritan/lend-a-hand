@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import onegoodsamaritan.lendahand.models.Task;
+
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,7 +28,8 @@ public class BaseActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.setDrawerListener(toggle);
@@ -78,8 +81,9 @@ public class BaseActivity extends AppCompatActivity
         int selectedPosition;
         Intent navigationIntent;
 
+
         switch (id) {
-            case R.id.task_feed:
+            case R.id.task_feedBtn:
                 navigationIntent = new Intent(this, TaskFeedActivity.class);
                 selectedPosition = 0;
             default:
@@ -87,10 +91,8 @@ public class BaseActivity extends AppCompatActivity
                 selectedPosition = 1;
         }
 
-        if(selectedPosition != position) {
-            navigationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(navigationIntent);
-        }
+        navigationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(navigationIntent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

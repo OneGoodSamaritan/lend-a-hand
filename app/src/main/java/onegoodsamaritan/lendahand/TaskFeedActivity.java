@@ -30,7 +30,7 @@ public class TaskFeedActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 AddTaskDialog addTaskDialog = new AddTaskDialog(getApplicationContext());
-//                addTaskDialog.show();
+                addTaskDialog.show();
             }
         });
         position = 0;
