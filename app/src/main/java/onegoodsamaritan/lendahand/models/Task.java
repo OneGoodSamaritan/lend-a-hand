@@ -12,14 +12,16 @@ public class Task {
     public int karma;
     public String requestor;
     public String date;
+    public String key;
+    public String samaritan;
 
     // 0 : open, 1 : accepted, 2 : completed
-    private int status;
+    public int status;
 
     public Task() {
     }
 
-    public Task(String title, String description, String location, int karma, String requestor, String date, int status) {
+    public Task(String title, String description, String location, int karma, String requestor, String date, int status, String samaritan) {
         this.title = title;
         this.description = description;
         this.location = location;
@@ -27,6 +29,7 @@ public class Task {
         this.requestor = requestor;
         this.date = date;
         this.status = status;
+        this.samaritan = samaritan;
     }
 
     @Exclude
@@ -38,6 +41,8 @@ public class Task {
         result.put("karma", karma);
         result.put("requestor", requestor);
         result.put("date", date);
+        result.put("status", status);
+        result.put("samaritan", samaritan);
 
         return result;
     }

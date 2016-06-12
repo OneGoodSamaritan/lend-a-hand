@@ -48,7 +48,7 @@ public class AddTaskDialog extends DialogFragment {
                         int karma = Integer.valueOf(dialogKarmaEditText.getText().toString());
                         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-                        Task task = new Task(title, description, location, karma, "Ali Hirani", date, 0);
+                        Task task = new Task(title, description, location, karma, getName(), date, Constants.OPEN, "");
                         writeNewPost(task);
                     }
                 })
@@ -67,6 +67,17 @@ public class AddTaskDialog extends DialogFragment {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/public-tasks/" + key, postValues);
+        childUpdates.put("/users/" + Constants.USER + "/issuedTasks/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
+    }
+
+    public String getName() {
+        if(Constants.USER.equals("mting")) {
+            return "Marc Ting";
+        } else if(Constants.USER.equals("alih")) {
+            return "Ali Hirani";
+        } else {
+            return "Branko Mostic";
+        }
     }
 }
