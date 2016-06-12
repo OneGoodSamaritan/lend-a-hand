@@ -12,12 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import onegoodsamaritan.lendahand.models.Task;
-
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    int position;
     NavigationView navigationView;
     DrawerLayout mDrawer;
 
@@ -85,10 +82,9 @@ public class BaseActivity extends AppCompatActivity
         switch (id) {
             case R.id.task_feedBtn:
                 navigationIntent = new Intent(this, TaskFeedActivity.class);
-                selectedPosition = 0;
+                break;
             default:
                 navigationIntent = new Intent(this, MyTasksActivity.class);
-                selectedPosition = 1;
         }
 
         navigationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
